@@ -5,6 +5,7 @@ set showcmd
 set encoding=utf-8
 set showmatch
 set relativenumber
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
 call plug#begin('~/.vim/plugged')
 
@@ -37,6 +38,14 @@ Plug 'airblade/vim-gitgutter'
 
 call plug#end()
 
+" quick save
+nnoremap <C-s> :update<CR>
+
+augroup colorscheme_coc_setup | au!
+    au ColorScheme * call s:my_colors_setup()
+augroup END
+
+highlight CocFloating ctermbg=Black
 
 " tokyonight settings
 let g:lightline={'colorscheme': 'tokyonight'}
@@ -73,10 +82,6 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
-
-
-
-
 
 
 
@@ -199,8 +204,8 @@ endif
 
 " Use CTRL-S for selections ranges.
 " Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
+"nmap <silent> <C-s> <Plug>(coc-range-select)
+"xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocActionAsync('format')
